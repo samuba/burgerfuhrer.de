@@ -7,43 +7,101 @@
     <meta name="author" content="">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="tachyons.css">
 </head>
 
-<body>
+<body class="">
+    <div class="center ba bw2 mv3-l mw8 bg-white shadow-6">
 
-    <div id="image">
-        <h1>coming soon</h1>
+        <div class="ba bw1 bg-gold pv3">
+            <h1 class="tc ma0">Der Burgerführer</h1>
+        </div>
+        <div class="ba bw1 h-auto pa2">
+            <h2 class="tc ma0">
+                für die <i class="underline">besten</i> Burger in Ulm
+            </h2>
+        </div>
+        <!--<h2 class="tc f-1 mt0 pt0">Its all about the Burgers</h2>-->
+
+        <div class="fl">
+            <article class="ba bw2 tc fl w-third-l w-50-m">
+                <h3 class="f4 mt3 mb1">Howies Grill</h3>
+                <div class="mb3">🍔🍔🍔🍔</div>
+                <img src="kassler.jpg" class="bt bw1 db">
+            </article>
+
+            <article class="ba bw2 tc fl w-third-l w-50-m">
+                <h3 class="f4 mt3 mb1">Ronny Biggs</h3>
+                <div class="mb3">🍔🍔🍔🍔🍔</div>
+                <img src="ronny.jpg" class="bt bw1 db">
+            </article>
+
+            <article class="ba bw2 tc fl w-third-l w-50-m">
+                <h3 class="f4 mt3 mb1">Riggs Burger</h3>
+                <div class="mb3">🍔🍔🍔🍔</div>
+                <img src="kassler.jpg" class="bt bw1 db">
+            </article>
+
+            <article class="ba bw2 tc fl w-third-l w-50-m">
+                <h3 class="f4 mt3 mb1">Bootshaus</h3>
+                <div class="mb3">🍔🍔🍔🍔🍔</div>
+                <img src="ronny.jpg" class="bt bw1 db">
+            </article>
+
+            <article class="ba bw2 tc fl w-third-l w-50-m">
+                <h3 class="f4 mt3 mb1">Lafonda</h3>
+                <div class="mb3">🍔🍔🍔🍔</div>
+                <img src="kassler.jpg" class="bt bw1 db">
+            </article>
+
+            <article class="ba bw2 tc fl w-third-l w-50-m">
+                <h3 class="f4 mt3 mb1">Acker und Weide</h3>
+                <div class="mb3">🍔🍔🍔🍔🍔</div>
+                <img src="ronny.jpg" class="bt bw1 db">
+            </article>
+
+            <article class="ba bw2 tc fl w-third-l w-50-m">
+                <h3 class="f4 mt3 mb1">Burgerheart</h3>
+                <div class="mb3">🍔🍔🍔🍔</div>
+                <img src="kassler.jpg" class="bt bw1 db">
+            </article>
+
+            <article class="ba bw2 tc fl w-third-l w-50-m">
+                <h3 class="f4 mt3 mb1">Josies</h3>
+                <div class="mb3">🍔🍔🍔</div>
+                <img src="ronny.jpg" class="bt bw1 db">
+            </article>
+        </div>
+
+        <div class="db">
+            MAP
+        </div>
+
+
+        <div class="ba bw1 bg-gold h-auto pa3">
+            <h1 class="tc ma0">Impressum</h1>
+        </div>
     </div>
-
 </body>
 
 <style>
     body {
         height: 100%;
         margin: 0 0 0 0;
+        padding: 0 0 0 0;
+        background: url("tischdecke.jpg");
+        background-size: 15em ;
+       
+
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     }
 
-    h1 {
-        font-family: monospace;
-        font-size: 80pt;
-        color: white;
-        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
-    }
+    .shadow-6 { box-shadow: 0 0 9px 3px rgba( 0, 0, 0, .25 ); }
 
-    #image {
-        display:flex;
-        justify-content:center;
-        align-items:center;
+    .bg-brown { background-color: rgb(98, 62, 61); }
+    .brown { color: rgb(98, 62, 61); }
 
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: url("background.jpg") no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-    }
+    .w6 { width: 32rem; }
 </style>
 
 
