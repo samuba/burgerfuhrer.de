@@ -141,7 +141,7 @@
             <div class="pt3 pb3">
                 <h3 class="f3 mt0 mb1">Hier gibt es die besten Burger in Ulm:</h3>
             </div>
-            <img src="https://www.jqueryscript.net/images/Show-Nearby-Places-jQuery-Google-Maps-WhatsNearby.jpg" class="bt db w-100">
+            <div id="googlemap"></div>
         </div>
 
 
@@ -165,6 +165,54 @@
         </div>
     </div>
 </body>
+
+<script>
+    var restaurants = [
+        {
+            name: "Ronny Biggs",
+            text: "🍔🍔🍔🍔🍔",
+            location: { lat: 48.396272, lng: 9.995693 }
+        }, {
+            name: "Josies",
+            text: "🍔🍔🍔🍔",
+            location: { lat: 48.395558, lng: 9.996562 }
+        }, {
+            name: "Howies Grill",
+            text: "🍔🍔🍔🍔🍔",
+            location: { lat: 48.399850, lng: 9.993739 }
+        }, {
+            name: "Bootshaus",
+            text: "🍔🍔🍔🍔🍔",
+            location: { lat: 48.397863, lng: 10.000808 }
+        }, {
+            name: "Acker und Weide",
+            text: "🍔🍔🍔🍔🍔",
+            location: { lat: 48.399347, lng: 9.961135 }
+        }
+    ]
+
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('googlemap'), {
+            zoom: 14,
+            center: { lat: 48.398509, lng: 9.992529 }
+        });
+        restaurants.forEach(function (x) {
+            var marker = new google.maps.Marker({
+                title: x.name,
+                position: x.location,
+                map: map,
+                animation: google.maps.Animation.DROP,
+                icon: "./burger_icon_small.png"
+            })
+            marker.addListener('click', function () {
+                new google.maps.InfoWindow({
+                    content: '<h3 class="f5 ma0 pa0">' + x.name + '<br>' + x.text + '</h3>'
+                }).open(map, marker);
+            });
+        })
+    }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDovHd210PA-XQppaInnnU_MVr1CIvExU&callback=initMap"></script>
 
 <style>
     body {
@@ -194,6 +242,21 @@
 
     .brown {
         color: rgb(98, 62, 61);
+    }
+
+    #googlemap {
+        position: relative;
+        padding-bottom: 75%;
+        height: 0;
+        overflow: hidden;
+    }
+
+    #googlemap iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
     }
 </style>
 
