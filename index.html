@@ -69,7 +69,7 @@
             <article class="ba bw2 tc w-third-l w-50-m bg-white">
                 <a href="#" class="link black">
                     <div class="pt3 pb3">
-                        <h3 class="f3 mt0 mb1 black">Lafonda</h3>
+                        <h3 class="f3 mt0 mb1 black">La Fonda</h3>
                         <div class="f3">🍔🍔🍔🍔</div>
                     </div>
                     <img src="kassler.jpg" class="bt db">
@@ -188,15 +188,16 @@
             name: "Acker und Weide",
             text: "🍔🍔🍔🍔🍔",
             location: { lat: 48.399347, lng: 9.961135 }
+        }, {
+            name: "La Fonda",
+            text: "🍔🍔🍔🍔",
+            location: { lat: 48.396442, lng: 9.992732 }
         }
     ]
 
     function initMap() {
-        var map = new google.maps.Map(document.getElementById('googlemap'), {
-            zoom: 14,
-            center: { lat: 48.398509, lng: 9.992529 }
-        });
-        restaurants.forEach(function (x) {
+        var map = new google.maps.Map(document.getElementById('googlemap'));
+        var markers = restaurants.map(function (x) {
             var marker = new google.maps.Marker({
                 title: x.name,
                 position: x.location,
@@ -209,7 +210,13 @@
                     content: '<h3 class="f5 ma0 pa0">' + x.name + '<br>' + x.text + '</h3>'
                 }).open(map, marker);
             });
+            return marker;
         })
+        var bounds = new google.maps.LatLngBounds();
+        markers.forEach(function (x) { bounds.extend(x.getPosition()) });
+        map.setCenter(bounds.getCenter());
+        map.fitBounds(bounds);
+        map.setZoom(map.getZoom() - 1);
     }
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDovHd210PA-XQppaInnnU_MVr1CIvExU&callback=initMap"></script>
