@@ -96,7 +96,7 @@
                             <img src="/burger_icon_gray.png" class="w1p5">
                         </div>
                     </div>
-                    <img src="ronny.jpg" class="bt db">
+                    <img src="jossies/1.jpg" class="bt db">
                 </a>
             </article>
 
@@ -171,35 +171,18 @@
 </body>
 
 <script>
-    var restaurants = [
-        {
-            name: "Ronny Biggs",
-            text: "🍔🍔🍔🍔🍔",
-            location: { lat: 48.396272, lng: 9.995693 }
-        }, {
-            name: "Josies",
-            text: "🍔🍔🍔🍔",
-            location: { lat: 48.395558, lng: 9.996562 }
-        }, {
-            name: "Howies Grill",
-            text: "🍔🍔🍔🍔🍔",
-            location: { lat: 48.399850, lng: 9.993739 }
-        }, {
-            name: "Bootshaus",
-            text: "🍔🍔🍔🍔🍔",
-            location: { lat: 48.397863, lng: 10.000808 }
-        }, {
-            name: "Acker und Weide",
-            text: "🍔🍔🍔🍔🍔",
-            location: { lat: 48.399347, lng: 9.961135 }
-        }, {
-            name: "La Fonda",
-            text: "🍔🍔🍔🍔",
-            location: { lat: 48.396442, lng: 9.992732 }
+    function httpGetAsync(theUrl, callback) {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() { 
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                callback(xmlHttp.responseText);
         }
-    ]
+        xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+        xmlHttp.send(null);
+    }
 
-    function initMap() {
+    function initMap(restaurants) {
+        if(!restaurants) return
         var map = new google.maps.Map(document.getElementById('googlemap'));
         var markers = restaurants.map(function (x) {
             var marker = new google.maps.Marker({
@@ -207,7 +190,7 @@
                 position: x.location,
                 map: map,
                 animation: google.maps.Animation.DROP,
-                icon: "./burger_icon_small.png"
+                icon: "/burger_icon_small.png"
             })
             marker.addListener('click', function () {
                 new google.maps.InfoWindow({
@@ -222,6 +205,10 @@
         map.fitBounds(bounds);
         map.setZoom(map.getZoom() - 1);
     }
+
+    httpGetAsync("/restaurants.json", function(x){
+        initMap(JSON.parse(x).restaurants)
+    })
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDovHd210PA-XQppaInnnU_MVr1CIvExU&callback=initMap"></script>
 

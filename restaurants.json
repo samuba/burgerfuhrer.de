@@ -1,0 +1,29 @@
+{
+    "restaurants": [
+        {
+            "name": "Ronny Biggs",
+            "text": "🍔🍔🍔🍔🍔",
+            "location": { "lat": 48.396272, "lng": 9.995693 }
+        }, {
+            "name": "Josies",
+            "text": "🍔🍔🍔🍔",
+            "location": { "lat": 48.395558, "lng": 9.996562 }
+        }, {
+            "name": "Howies Grill",
+            "text": "🍔🍔🍔🍔🍔",
+            "location": { "lat": 48.399850, "lng": 9.993739 }
+        }, {
+            "name": "Bootshaus",
+            "text": "🍔🍔🍔🍔🍔",
+            "location": { "lat": 48.397863, "lng": 10.000808 }
+        }, {
+            "name": "Acker und Weide",
+            "text": "🍔🍔🍔🍔🍔",
+            "location": { "lat": 48.399347, "lng": 9.961135 }
+        }, {
+            "name": "La Fonda",
+            "text": "🍔🍔🍔🍔",
+            "location": { "lat": 48.396442, "lng": 9.992732 }
+        }
+    ]
+}
