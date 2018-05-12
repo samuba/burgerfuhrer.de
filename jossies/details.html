@@ -29,19 +29,19 @@
         </div>
 
         <div class="flex bg-black">
-            <a href="#" class="link black ba bw2 tc w-third bg-white">
+            <a href="3.jpg" class="link black ba bw2 tc w-third bg-white">
                 <img src="3.jpg" class="obj-fit-cover w-100 h-100">
             </a>
-            <a href="#" class="link black ba bw2 tc w-third bg-white">
+            <a href="1.jpg" class="link black ba bw2 tc w-third bg-white">
                 <img src="1.jpg" class="obj-fit-cover w-100 h-100">
             </a>
-            <a href="#" class="link black ba bw2 tc w-third bg-white">
+            <a href="2.jpg" class="link black ba bw2 tc w-third bg-white">
                 <img src="2.jpg" class="obj-fit-cover w-100 h-100">
             </a>
         </div>
 
-        <div class="ba bw2 pt3 pb4">
-            <div class="mt3 flex-ns">
+        <div class="ba bw2">
+            <div class="mv4 flex-ns">
                 <div class="w-third-ns center f3 tc">
 
                     <ul class="list tl dib f3-l f4-m f5 ma0 pa0">
@@ -73,13 +73,17 @@
 
                 </div>
                 <div class="w-two-thirds-ns f4 fw5 tj pr4-ns ph3">
-                    Hamburger sind mein Lieblingsgericht liebe Burger und bin froh das es in unserer Region so viele gute Läden gibt Lorem ipsum
+                    Lorem ipsum
                     dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
                     magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
                     clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
                     consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
                     erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
                 </div>
+            </div>
+
+            <div class="bt bw3 tc">
+                <div id="googlemap"></div>
             </div>
         </div>
 
@@ -143,5 +147,49 @@
     }
 </style>
 
+<script>
+    function httpGetAsync(theUrl, callback) {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() { 
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                callback(xmlHttp.responseText);
+        }
+        xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+        xmlHttp.send(null);
+    }
+
+    function initMap(restaurants) {
+        if(!restaurants) return
+        var map = new google.maps.Map(document.getElementById('googlemap'));
+        var markers = restaurants.map(function (x) {
+            var marker = new google.maps.Marker({
+                title: x.name,
+                position: x.location,
+                map: map,
+                animation: google.maps.Animation.DROP,
+                icon: "/burger_icon_small.png"
+            })
+            marker.addListener('click', function () {
+                new google.maps.InfoWindow({
+                    content: '<h3 class="f5 ma0 pa0">' + x.name + '<br>' + x.text + '</h3>'
+                }).open(map, marker);
+            });
+            return marker;
+        })
+        var bounds = new google.maps.LatLngBounds();
+        markers.forEach(function (x) { bounds.extend(x.getPosition()) });
+        //map.setCenter(markers[3]);
+        map.fitBounds(bounds);
+        map.setZoom(map.getZoom() - 1);
+
+        var current = markers.filter(function(x) { return x.title == "Josies" })[0]
+        google.maps.event.trigger(current, 'click')
+    }
+
+    httpGetAsync("/restaurants.json", function(x){
+        initMap(JSON.parse(x).restaurants)
+    })
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDovHd210PA-XQppaInnnU_MVr1CIvExU&callback=initMap"></script>
 
 </html>
