@@ -20,7 +20,7 @@
 
         <div class="ba bw2 pv3">
             <h2 class="tc ma0 f2">Josies</h2>
-            <div class="f3 tc"> 
+            <div class="f3 tc">
                 <img src="/burger_icon.png" height="30px">
                 <img src="/burger_icon.png" height="30px">
                 <img src="/burger_icon.png" height="30px">
@@ -40,49 +40,57 @@
             </a>
         </div>
 
-        <div class="ba bw2">
-            <div class="mv4 flex-ns">
-                <div class="w-third-ns center f3 tc">
-
-                    <ul class="list tl dib f3-l f4-m f5 ma0 pa0">
-                        <li class="mv3">
-                            <div class="w2 tc dib">
-                                <i class="far fa-ruler-horizontal gold"></i>
+        <div class="">
+            <div class="flex-l justify-center content-center">
+                <div class="
+                bg-gold bw2 ba ph3 
+                w-third-l flex-l justify-center-l items-center-l
+                f3-l f4-m f5">
+                    <div class="db-l  flex justify-evenly items-center flex-wrap">
+                        <div class="mv3 mh3">
+                            <div class="dib tc w2 w3-ns f2-ns ">
+                                <i class="far fa-ruler-horizontal white"></i>
                             </div>
                             10cm
-                        </li>
-                        <li class="mv3">
-                            <div class="w2 tc dib">
-                                <i class="far fa-ruler-vertical gold"></i>
+                        </div>
+                        <div class="mv3 mh3">
+                            <div class="dib tc w2 w3-ns f2-ns ">
+                                <i class="far fa-ruler-vertical white"></i>
                             </div>
                             8cm
-                        </li>
-                        <li class="mv3">
-                            <div class="w2 tc dib">
-                                <i class="far fa-weight gold"></i>
+                        </div>
+                        <div class="mv3 mh3">
+                            <div class="dib tc w2 w3-ns f2-ns ">
+                                <i class="far fa-weight white"></i>
                             </div>
                             400g
-                        </li>
-                        <li class="mv3">
-                            <div class="w2 tc dib">
-                                <i class="far fa-money-bill-alt gold"></i>
+                        </div>
+                        <div class="mv3 mh3">
+                            <div class="dib tc w2 w3-ns f2-ns ">
+                                <i class="far fa-money-bill-alt white"></i>
                             </div>
                             8€
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
 
                 </div>
-                <div class="w-two-thirds-ns f4 fw5 tj pr4-ns ph3">
-                    Lorem ipsum
-                    dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                    magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                    clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-                    consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                    erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+
+                <div class="
+                pa4 f4 fw5 tj bw2 ba
+                w-two-thirds-l
+                pr4-ns">
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita
+                    kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+                    sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+                    diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
+                    elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                    At vero eos et accusam et justo duo dolores et ea rebum.
                 </div>
             </div>
 
-            <div class="bt bw3 tc">
+            <div class="ba bw2 tc">
                 <div id="googlemap"></div>
             </div>
         </div>
@@ -109,6 +117,22 @@
 
     .obj-fit-cover {
         object-fit: cover;
+    }
+
+    @media screen and (min-width: 30em) and (max-width: 60em) {
+        .justify-evenly-m {
+            justify-content: space-evenly;
+        }
+    }
+
+    @media screen and (max-width: 30em) {
+        .justify-evenly-s {
+            justify-content: space-evenly;
+        }
+    }
+
+    .justify-evenly {
+        justify-content: space-evenly;
     }
 
     article:hover {
@@ -150,7 +174,7 @@
 <script>
     function httpGetAsync(theUrl, callback) {
         var xmlHttp = new XMLHttpRequest();
-        xmlHttp.onreadystatechange = function() { 
+        xmlHttp.onreadystatechange = function () {
             if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
                 callback(xmlHttp.responseText);
         }
@@ -159,7 +183,7 @@
     }
 
     function initMap(restaurants) {
-        if(!restaurants) return
+        if (!restaurants) return
         var map = new google.maps.Map(document.getElementById('googlemap'));
         var markers = restaurants.map(function (x) {
             var marker = new google.maps.Marker({
@@ -182,11 +206,11 @@
         map.fitBounds(bounds);
         map.setZoom(map.getZoom() - 1);
 
-        var current = markers.filter(function(x) { return x.title == "Josies" })[0]
+        var current = markers.filter(function (x) { return x.title == "Josies" })[0]
         google.maps.event.trigger(current, 'click')
     }
 
-    httpGetAsync("/restaurants.json", function(x){
+    httpGetAsync("/restaurants.json", function (x) {
         initMap(JSON.parse(x).restaurants)
     })
 </script>
